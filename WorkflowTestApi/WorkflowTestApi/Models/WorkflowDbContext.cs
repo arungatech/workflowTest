@@ -10,7 +10,10 @@ namespace WorkflowTestApi.Models
     {
         public WorkflowDbContext (DbContextOptions<WorkflowDbContext> options) : base(options)
         {
-
+             
         }
+
+        public DbSet<CategorieClient> CategorieClients { get; set; }
+        public DbSet<Client> Clients { get; set; }
     }
 }
