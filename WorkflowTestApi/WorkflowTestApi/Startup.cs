@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using WorkflowTestApi.Models;
 
 namespace WorkflowTestApi
 {
@@ -25,6 +27,9 @@ namespace WorkflowTestApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connection = Configuration.GetConnectionString("WorkflowDbContext");
+            services.AddDbContext<WorkflowDbContext>(option => option.UseSqlServer(connection));
+
             services.AddControllers();
         }
 
